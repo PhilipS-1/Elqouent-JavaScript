@@ -81,3 +81,53 @@ function sum(numbers){
 }
 
 //reverse array
+function reverseArray(arr){
+    let arrReverse = []
+    let length = arr.length
+    for(let i = 0; i <=length; i++){
+        arrReverse.push(arr.pop())
+    }
+    return arrReverse;
+}
+
+function reverseArrayInPlace(arr){
+    let middle = Math.floor(arr.length/2)
+    let length = arr.length
+    for(i = 0; i < middle -1; i++){
+        let temp = arr[i]
+        arr[i] = arr[length -i -1]
+        arr[length - i -1] = temp
+    }
+}
+
+
+//lists
+function prepend(number, next = null){
+    return {number, next}
+}
+
+function createListElem(number, next = null){
+    return {number, next}
+}
+
+function arrayToList(arr){
+    if (arr.length === 0) return null 
+    else return createListElem(arr[0], arrayToList(arr.slice(1)))
+}
+
+function listToArray(list){
+    if(list.next === null) return [(list.number)]
+    else return [list.number].concat(listToArray(list.next))
+}
+
+
+function nth(list, n){
+    if (n===0) return list.number 
+    else return nth(list.next, n-1)
+}
+
+l = arrayToList([1,2,3])
+console.log(l)
+console.log(listToArray(l))
+console.log(prepend(20, l))
+console.log(nth(l, 1))
